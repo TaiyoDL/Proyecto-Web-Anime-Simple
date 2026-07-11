@@ -14,16 +14,19 @@ import java.sql.SQLException;
 
 public class Conexion {
     
-    public static Connection conectar() throws SQLException {
+     public static Connection conectar() throws SQLException {
+
         try {
-            // Forzamos a GlassFish a registrar el driver de SQLite en memoria
-            Class.forName("org.sqlite.JDBC");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            throw new SQLException("Error: No se encontró el driver de SQLite en WEB-INF/lib", e);
+            throw new SQLException("No se encontró el driver de MySQL", e);
         }
-        
-        // Ahora sí, realizamos la conexión
-        return DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Prueba1\\BD\\Anime.bd");
+
+        return DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/anime?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8",
+            "root",
+            ""
+        );
     }
     
 }

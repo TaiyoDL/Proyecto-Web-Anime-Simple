@@ -1,0 +1,35 @@
+/* Ocultar por completo el input de texto */
+
+form input[type="text"] {
+    display: none;
+}
+
+
+/* Decoración moderna y atractiva para el botón de Submit */
+form input[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Degradado violeta elegante */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 30px; /* Bordes completamente redondeados estilo moderno */
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3); /* Sombra suave con el color del botón */
+    transition: all 0.3s ease; /* Transición suave para las animaciones */
+}
+
+/* Efecto al pasar el ratón por encima (Hover) */
+form input[type="submit"]:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); /* Invierte el degradado */
+    transform: translateY(-2px); /* Eleva el botón sutilmente */
+    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5); /* Aumenta la sombra */
+}
+
+/* Efecto al hacer clic (Active) */
+form input[type="submit"]:active {
+    transform: translateY(1px); /* Hunde el botón al pulsar */
+    box-shadow: 0 2px 10px rgba(118, 75, 162, 0.3);
+}

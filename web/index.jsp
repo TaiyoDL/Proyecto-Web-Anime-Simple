@@ -1,89 +1,89 @@
 <%-- 
-    Document   : index
-    Created on : 9 jul 2026, 20:26:28
+    Document   : Login.jsp
+    Created on : 11 jul 2026, 20:26:11
     Author     : Usuario
 --%>
-<%@ page import="Clases.*, java.util.ArrayList" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Catalogo Animes</title>
-        <link rel="icon" href="4043233-anime-away-face-no-nobody-spirited_113254.ico" type="image/x-icon">
-        <link rel="stylesheet"  href="Estilos.css">
+        <title>Login Anime</title>
+            <link rel="stylesheet" href="styles.css">
+
     </head>
     <body>
-        
-        
 
-    <header>
-
-        <div class="opcion">
-            
-            <a href="">Buscar Anime</a>
-            
-            
-        </div>
-        
-        <div class="opcion"><a href="">Buscar Autor</a></div>
-        
-        <div class="opcion"><a href="">Buscar Casa Animadora</a></div>
-            
-            
-        
-    </header>
+    <header></header>
 
     <main>
+
+        <div class="inicio visible">
+            <form id="login" method="post" action="iniciar.jsp">
+
+        <div class="imageL"></div>
+
+        <div class="cajaL">
+<h1>Inicia Sesión</h1>
         
-        <div class="contenedorAnimes">
-        
-       <% for(Anime a : Funciones.cargarAnimes()){ %>
-    <div class="Anime">
 
-        <div class="cartel"><img src="<%= a.getCartel() %>"></div>
 
-        <div class="datos">
+  <div class="mover">      
+<h2>Usuario</h2>
+        <input type="text" placeholder="Nombre de usuario" name="usuario" required>
+        </div> 
+<div > 
+       <h2>Contraseña</h2>
+        <input type="password" placeholder="Contraseña" name="contrasenia" required> 
+        </div> 
+      <div class="cajaBoton">
+<input class="boton" type="submit" value="Inciar">  
 
-            <div class="foto"><img src="<%= a.getFoto() %>"></div>
 
-            <div class="infoPrincipal">
-                <p class="nombre"><%= a.getNombre() %></p>
-                <p class="descripcion"><%= a.getDescripcion() %></p>
-            </div>
-
-            <div class="contenido">
-                <p class="capitulos">Capitulos: <%= a.getCapitulos() %></p>
-                <p class="temporadas">Temporadas: <%= a.getTemporadas() %></p>
-            </div>
-
-            <div class="creacion">
-                <p class="autor">Autor/a: <%= a.getAutor() != null ? a.getAutor().getNombre() : "" %></p>
-                <p class="casa">Casa Animadora: <%= a.getCasa() != null ? a.getCasa().getNombre() : "" %></p>
-            </div>
-
-            <div class="extra">
-                <div class="generos">
-                    <% if(a.getGeneros() != null) { 
-                        for(Genero g : a.getGeneros()){ %>
-                            <p><%= g.getNombre() %></p>
-                    <%  } 
-                       } %>
-                </div>
-            </div>
-
-            <div class="final">
-                <p class="fecha">Fecha de Estreno: <%= a.getFecha_lanzamiento() %></p>
-                <p class="nota"><%= a.getPuntuacion() %><img id="star" src="https://static.vecteezy.com/system/resources/thumbnails/021/508/043/small/black-star-black-shotting-star-transparent-black-bokeh-stars-free-free-png.png"></p>
-            </div>
-
-        </div>
-    </div>
-<% } %>
+</div>  
+<p class="cambiar" onclick="mostrarRegistro()">Registrarse</p>
 </div>
-    </main>
 
-    <footer></footer>
+        
+    </form>
+    </div>
+<div class="registrarse oculto">
+    <form id="register" method="post" action="registro.jsp">
+
+<div class="imageR"></div>
+
+        <div class="cajaR">
+<h1>Registro</h1>
+      <div > 
+       <h2>Nombre Completo</h2>
+        <input type="text" placeholder="Nombre" name="nombre" required> 
+        </div>  
+
+       <div>  
+<h2>Usuario</h2>
+        <input type="text" placeholder="Nombre de usuario" name="usuario" required>
+        </div> 
+<div> 
+       <h2>Contraseña</h2>
+        <input type="password" placeholder="Contraseña" name="contrasenia" id="contrasenia" required oninput ="comprobarContrasenia()"> 
+</div> 
+<div> 
+        <h2>Repetir Contraseña</h2>
+        <input type="password" placeholder="Repetir Contraseña" name="contrasenia2" id="contrasenia2" required oninput ="comprobarContrasenia()"> 
+        </div> 
+
+        <div class="cajaBoton">
+<input class="boton" id="BotonR" type="submit" value="Registro" name="Registro">   
+</div>
+<p class="cambiar" onclick="mostrarInicio()">Inciar Sesión</p>
+</div>
+        
+    </form>
+    </div>
+</main>
+<footer></footer>
+<script src="Script.js"></script>
 </body>
 </html>
+

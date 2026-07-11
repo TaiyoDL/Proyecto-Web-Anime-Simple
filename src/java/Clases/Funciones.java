@@ -51,7 +51,56 @@ public class Funciones {
 
     return catalogo;
 }
+    
+    
+    public static ArrayList<Anime> cargarAnimes(String usuario) {
+    ArrayList<Anime> catalogo = new ArrayList<>();
+    
+    
+    String sql = "SELECT Anime.nombre, Anime.descripcion, Anime.puntuacion, Anime.capitulos, Anime.temporadas, "
+               + "Anime.fecha_lanzamiento, Anime.foto, Anime.cartel, Autor.nombre AS nombreAutor, "
+               + "Casa_Animadora.nombre AS nombreCasa "
+               + "FROM Anime "
+               + "LEFT JOIN Autor ON Autor.id_autor = Anime.id_autor "
+               + "LEFT JOIN Casa_Animadora ON Casa_Animadora.id_casa = Anime.id_casa "
+               + "LEFT JOIN relacion_au ON relacion_au.id_anime = Anime.id_anime "
+               + "LEFT JOIN Usuario ON Usuario.usuario = relacion_au.usuario " 
+               + "WHERE Usuario.usuario = ?"; 
 
+    
+    try (Connection conexion = Conexion.conectar();
+         PreparedStatement ps = conexion.prepareStatement(sql)) {
+        
+        
+        ps.setString(1, usuario);
+        
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                String nombreAnime = rs.getString("nombre");
+                String fechaStr = rs.getString("fecha_lanzamiento");
+                LocalDate fechaLanzamiento = (fechaStr != null) ? LocalDate.parse(fechaStr) : null;
+
+                catalogo.add(new Anime(
+                    nombreAnime,
+                    rs.getString("descripcion"),
+                    rs.getDouble("puntuacion"),
+                    rs.getInt("capitulos"),
+                    rs.getInt("temporadas"),
+                    fechaLanzamiento,
+                    rs.getString("foto"),
+                    rs.getString("cartel"),
+                    autorAnime(conexion, nombreAnime),
+                    generosAnime(conexion, nombreAnime),
+                    CasaAnime(conexion, nombreAnime)
+                ));
+            }
+        }
+    } catch (SQLException ex) {
+        System.getLogger(Anime.class.getName()).log(System.Logger.Level.ERROR, "Error al cargar los animes del usuario", ex);
+    }
+
+    return catalogo;
+}
 private static ArrayList<Genero> generosAnime(Connection conexion, String nombreAnime) throws SQLException {
     String sql = "Select Genero.nombre from Genero left join Relacion_AG on Relacion_AG.nombre_genero=Genero.nombre left join Anime on Anime.id_anime=Relacion_AG.id_anime where Anime.nombre=?";
     ArrayList<Genero> generos = new ArrayList<>();
