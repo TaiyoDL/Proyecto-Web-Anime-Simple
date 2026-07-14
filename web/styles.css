@@ -29,19 +29,23 @@ form{
 }
 
 
-header{height: 400px;}
-body{
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
 
+body {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
+
     background-image: url(imgs/fondo.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
 }
 
 main{
@@ -168,4 +172,41 @@ h2,h1{
 .visible{
     opacity:1;
     transform:scale(1);
+}
+
+#azul{
+
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#rosa{
+  width: 35px;
+    height: 35px;
+    cursor: pointer;
+
+}
+
+#rosa:hover,#azul:hover{
+
+opacity: 0.8;
+
+}
+
+header, header div{
+
+    display:flex;
+    flex-direction: row;
+    justify-content: end;
+   
+}
+
+header {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: auto;
+    height: auto;
+    z-index: 1000;
 }

@@ -11,11 +11,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Anime</title>
             <link rel="stylesheet" href="styles.css">
+            <link rel="icon" href="imgs/icono.ico">
 
     </head>
     <body>
 
-    <header></header>
+    <header>
+
+<div class="fondos">
+
+
+        <img id="azul" src="imgs/azul.png" onclick="cambiarFondoAzul()">
+        <img id="rosa" src="imgs/rosa.png" onclick="cambiarFondoRosa()">
+
+</div>
+
+    </header>
 
     <main>
 

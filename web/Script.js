@@ -49,3 +49,27 @@ botonRegistro.style.opacity=0.6;
 }
 }
 
+let cuerpo=document.body;
+
+let cRosa=document.getElementById("rosa");
+let cAzul=document.getElementById("azul");
+
+function cambiarFondoAzul(){
+
+    cuerpo.style.backgroundImage="url(imgs/fondo2.png)";
+
+    cRosa.style.width="30px";
+    cRosa.style.height="30px";
+    cAzul.style.width="35px";
+    cAzul.style.height="35px";
+}
+
+function cambiarFondoRosa(){
+
+    cuerpo.style.backgroundImage="url(imgs/fondo.png)";
+
+    cRosa.style.width="35px";
+    cRosa.style.height="35px";
+    cAzul.style.width="30px";
+    cAzul.style.height="30px";
+}
